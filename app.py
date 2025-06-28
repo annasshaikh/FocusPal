@@ -450,7 +450,16 @@ class PresenceTrackerApp:
                 # Update the session time label in the GUI
                 self.session_time_label.config(text=f"Current Session: {self.format_duration(self.current_session_duration)}")
             # If session is not active, the label is reset when the session ends
+            
+            # Update Total Time Today Display
+            # This label should show saved time + current session time if active
+            display_total = self.total_time_today # Start with the total from *saved* sessions for today
+            if self.session_active:
+                # Add the duration of the current *active* session to the saved total
+                display_total += self.current_session_duration
 
+            # Update the total time label in the GUI
+            self.today_time_label.config(text=f"Total Time Today: {self.format_duration(display_total)}")
             # --- Schedule the next frame update ---
             # Call update_frame again after a short delay to process the next frame
             self.root.after(30, self.update_frame) # Adjust delay for desired frame rate (e.g., 30ms for ~33 FPS)
