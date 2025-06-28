@@ -1,0 +1,7 @@
+ultralytics
+opencv-python
+pillow
+streamlit
+pandas
+plotly
+sqlite3
